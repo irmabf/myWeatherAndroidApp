@@ -7,11 +7,13 @@ import io.keepcoding.guedrbootcamp6.fragment.CityListFragment
 import io.keepcoding.guedrbootcamp6.fragment.CityListFragment.OnCitySelectedListener
 import io.keepcoding.guedrbootcamp6.model.City
 
-
 class ForecastActivity : AppCompatActivity(), OnCitySelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forecast)
+
+        /*Averiguamos qué interfaz hemos cargado
+        * **/
 
         //Comprobamos que no tenemos ya añadido el fragment a nuestra jerarquia
         //Hacemos esto para evitar que se superponga el mismo fragment varias veces
