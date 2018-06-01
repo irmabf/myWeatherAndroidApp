@@ -57,4 +57,16 @@ class CityPagerActivity : AppCompatActivity() {
         }
         else -> super.onOptionsItemSelected(item)
     }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        super.onPrepareOptionsMenu(menu)
+
+        val previousMenu = menu?.findItem(R.id.previous)
+        val nextMenu = menu?.findItem(R.id.next)
+
+        val adapter = view_pager.adapter!!
+        previousMenu?.isEnabled = view_pager.currentItem > 0
+        nextMenu?.isEnabled = view_pager.currentItem < adapter.count - 1
+        return true
+    }
 }
