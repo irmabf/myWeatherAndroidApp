@@ -4,8 +4,10 @@
 
     <item
         android:id="@+id/previous"
-        android:title="Anterior" />
+        android:title="Anterior"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/next"
-        android:title="Siguiente" />
+        android:title="Siguiente"
+        app:showAsAction="ifRoom" />
 </menu>
