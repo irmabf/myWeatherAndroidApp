@@ -2,7 +2,7 @@ package io.keepcoding.guedrbootcamp6.model
 
 import io.keepcoding.guedrbootcamp6.R
 
-class Cities {
+object Cities {
 
     private val cities: List<City> = listOf(
             City("Madrid", Forecast(25f, 10f, 35f, "Soleado con alguna nube", R.drawable.ico_02)),

@@ -31,7 +31,7 @@ class CityPagerActivity : AppCompatActivity() {
             return intent
         }
     }
-    private val cities = Cities()
+    //private val cities = Cities()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,13 +43,13 @@ class CityPagerActivity : AppCompatActivity() {
 
         val adapter = object: FragmentPagerAdapter(supportFragmentManager) {
             override fun getItem(position: Int): Fragment {
-                return ForecastFragment.newInstance(cities[position])
+                return ForecastFragment.newInstance(Cities[position])
             }
 
-            override fun getCount() = cities.count
+            override fun getCount() = Cities.count
 
             override fun getPageTitle(position: Int): CharSequence {
-                return cities[position].name
+                return Cities[position].name
             }
         }
 
@@ -70,7 +70,7 @@ class CityPagerActivity : AppCompatActivity() {
     }
 
     private fun updateCityInfo(position: Int){
-       supportActionBar?.title = cities[position].name
+       supportActionBar?.title = Cities[position].name
     }
 
     private fun moveToCity(position: Int){
