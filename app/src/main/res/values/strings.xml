@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Guedr</string>
+    <string name="offline_image_description">Predicción del tiempo offline</string>
+    <string name="european_system_button">Sistema Europeo</string>
+    <string name="american_system_button">Sistema Americano</string>
+    <string name="forecast_image_description">Descripción gráfica del tiempo que hace</string>
+    <string name="max_temp_format">Max: %.2f %s</string>
+    <string name="min_temp_format">Min: %.2f %s</string>
+    <string name="humidity_format">Humedad: %.0f%%</string>
+    <string name="select_units_text">Selecciona las unidades:</string>
+    <string name="celsius_units">Unidades Celsius</string>
+    <string name="farenheit_units">Unidades Fahrenheit</string>
+    <string name="settings">Ajustes</string>
+    <string name="user_selects_celsius">El usuario ha elegido Celsius</string>
+    <string name="user_selects_fahrenheit">El usuario ha elegido Fahrenheit</string>
+    <string name="undo">Deshacer</string>
+</resources>
