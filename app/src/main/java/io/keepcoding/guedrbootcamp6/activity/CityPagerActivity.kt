@@ -26,15 +26,14 @@ class CityPagerActivity : AppCompatActivity() {
 
         val adapter = object: FragmentPagerAdapter(supportFragmentManager) {
             override fun getItem(position: Int): Fragment {
-                return ForecastFragment.newInstance(cities.getCity(position))
+                return ForecastFragment.newInstance(cities[position])
             }
 
             override fun getCount() = cities.count
 
             override fun getPageTitle(position: Int): CharSequence {
-                return cities.getCity(position).name
+                return cities[position].name
             }
-
         }
 
         view_pager.adapter = adapter
@@ -55,7 +54,7 @@ class CityPagerActivity : AppCompatActivity() {
     }
 
     private fun updateCityInfo(position: Int){
-       supportActionBar?.title = cities.getCity(position).name
+       supportActionBar?.title = cities[position].name
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
