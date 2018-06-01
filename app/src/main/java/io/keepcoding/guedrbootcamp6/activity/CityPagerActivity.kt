@@ -1,5 +1,7 @@
 package io.keepcoding.guedrbootcamp6.activity
 
+import android.content.Context
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -11,12 +13,26 @@ import android.view.MenuItem
 import io.keepcoding.guedrbootcamp6.R
 import io.keepcoding.guedrbootcamp6.fragment.ForecastFragment
 import io.keepcoding.guedrbootcamp6.model.Cities
+import io.keepcoding.guedrbootcamp6.model.City
 import kotlinx.android.synthetic.main.activity_city_pager.*
 import java.text.FieldPosition
 
 class CityPagerActivity : AppCompatActivity() {
 
+    /**Metodo intent(city) en el que le paso una ciudad al city pager activity */
+    companion object {
+        val EXTRA_CITY = "EXTRA_CITY"
+
+        fun intent(context: Context, cityIndex: Int): Intent {
+            //Tenemos que crear un intent y guardarlo en la variable intent,
+            //al intent le pasamos el contexto  y la clase que queremos arrancar
+            val intent = Intent(context, CityPagerActivity::class.java)
+            intent.putExtra(EXTRA_CITY, cityIndex)
+            return intent
+        }
+    }
     private val cities = Cities()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_city_pager)
@@ -47,14 +63,17 @@ class CityPagerActivity : AppCompatActivity() {
             }
         })
 
-        updateCityInfo(0)
-
-        //Añadir listener al view pager para cuando el usuario cambia de opcion en el menu
-
+        val initialCityInfo = intent.getIntExtra(EXTRA_CITY, 0)
+       moveToCity(initialCityInfo)
+        updateCityInfo(initialCityInfo)
     }
 
     private fun updateCityInfo(position: Int){
        supportActionBar?.title = cities[position].name
+    }
+
+    private fun moveToCity(position: Int){
+        view_pager.currentItem = position
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

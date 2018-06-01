@@ -1,5 +1,7 @@
 package io.keepcoding.guedrbootcamp6.fragment
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -17,6 +19,8 @@ class CityListFragment : Fragment() {
         //Creamos una nueva instancia del city list fragment
         fun newInstance() = CityListFragment()
     }
+
+    private var onCitySelectedListener: OnCitySelectedListener? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -31,7 +35,44 @@ class CityListFragment : Fragment() {
                 android.R.layout.simple_list_item_1,
                 cities.toArray())
         city_list.adapter = adapter
+        city_list.setOnItemClickListener { _, _, index, _ ->
+            //Avisamos al listener que una ciudad ha sido seleccionada
+            //pasamos la ciudad y la posicion que ocupa en la lista o array
+            //. Nos vamos a forecast activity para que al actividad implemente la interfaz
+            onCitySelectedListener?.onCitySelected(cities[index], index)
+        }
+    }
+    //2. Este fragment va a tener un atributo que va a ser el listener
+    // de lo que se ha pasado
 
+    //3. Implementar los metodos onAttach y on Dettach
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        commonAttach(context as Activity)
+    }
+
+    override fun onAttach(activity: Activity?) {
+        super.onAttach(activity)
+        commonAttach(context as Activity)
+    }
+    private fun commonAttach(activity: Activity?) {
+        if (activity is OnCitySelectedListener){
+            onCitySelectedListener = activity
+        }else{
+            onCitySelectedListener = null
+        }
+    }
+    override fun onDetach() {
+        super.onDetach()
+        onCitySelectedListener = null
+    }
+    //1. Interfaz con la que digo que se ha seleccionado una ciudad
+    /*Esta interfaz sera la que implemente la actividad que se quiere relaconar con el fragmen*/
+
+    interface  OnCitySelectedListener {
+        //Paso la ciudad que se ha seleccionado y la posicion que ocupa esa ciudad dentro de la lista
+        fun onCitySelected(city: City, position: Int)
     }
 
 }
